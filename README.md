@@ -101,5 +101,4 @@ public community forum (https://www.ibm.com/developerworks/community/groups/comm
 
 
 <h4>Feedback</h4>
-You can provide your valuable feedback/suggestion to dipakpal.opentech@gmail.com
-
+You can provide your valuable feedback/suggestion to <b>dipakpal.opentech@gmail.com</b>
