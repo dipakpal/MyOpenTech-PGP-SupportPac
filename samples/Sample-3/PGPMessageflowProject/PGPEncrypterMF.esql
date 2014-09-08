@@ -1,0 +1,34 @@
+
+
+CREATE COMPUTE MODULE PGPEncrypterMF_OverridePGPEncrypterNodeProperties
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyEntireMessage();
+		
+		-- Override PGP Encrypter node properties runtime
+		SET OutputLocalEnvironment.PGP.Encryption.InputDirectory 		= 'C:\PGP\Data';
+		SET OutputLocalEnvironment.PGP.Encryption.InputFileName 		= 'Encryption.input.txt';
+		SET OutputLocalEnvironment.PGP.Encryption.OutputDirectory 		= 'C:\PGP\Data';
+		SET OutputLocalEnvironment.PGP.Encryption.OutputFileName 		= 'Encryption.output.asc';
+		SET OutputLocalEnvironment.PGP.Encryption.EncryptionKeyUserId 	= 'Recipient <recipient-pgp-keys@ibm.com>';
+		SET OutputLocalEnvironment.PGP.Encryption.SignatureRequired 	= 'Yes';
+		SET OutputLocalEnvironment.PGP.Encryption.SignKeyUserId 		= 'Sender <sender-pgp-keys@ibm.com>';
+		SET OutputLocalEnvironment.PGP.Encryption.SignKeyPassphrase 	= 'sdrpassphrase';
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
