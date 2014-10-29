@@ -98,6 +98,8 @@ Compression Algorithms: UNCOMPRESSED, ZIP, ZLIB, BZIP2<br>
 
 2. Do you have any question ? Just put your question(s) at following IBM developerWorks
 public community forum (https://www.ibm.com/developerworks/community/groups/community/pgpsupportpaciib)
+or
+MQSeries.net public forum (http://www.mqseries.net/phpBB2/viewtopic.php?t=68728)
 
 
 <h4>Feedback</h4>
