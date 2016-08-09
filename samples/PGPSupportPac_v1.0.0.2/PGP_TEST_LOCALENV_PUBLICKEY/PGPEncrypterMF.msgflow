@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFileRead.msgnode="ComIbmFileRead.msgnode" xmlns:ComIbmFlowOrder.msgnode="ComIbmFlowOrder.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:com_ibm_broker_supportpac_pgp_PGPEncrypter.msgnode="com/ibm/broker/supportpac/pgp/PGPEncrypter.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="PGPEncrypterMF.msgflow" nsPrefix="PGPEncrypterMF.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="PGPEncrypterMF" bundleName="PGPEncrypterMF" pluginId="PGP_TEST_LOCALENV_PUBLICKEY"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/PGP_TEST_LOCALENV_PUBLICKEY/icons/full/obj16/PGPEncrypterMF.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/PGP_TEST_LOCALENV_PUBLICKEY/icons/full/obj30/PGPEncrypterMF.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="6,188" queueName="PGP.ENCRYPT.IN" messageDomainProperty="BLOB" transactionMode="no">
+        <translation xmi:type="utility:ConstantString" string="PGP.ENCRYPT.IN"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="661,267" queueName="PGP.ENCRYPT.OUT">
+        <translation xmi:type="utility:ConstantString" string="PGP.ENCRYPT.OUT"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="181,188" computeExpression="esql://routine/#PGPEncrypterMF_Process.Main">
+        <translation xmi:type="utility:ConstantString" string="Process"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="359,36" inputDirectory="C:/PGP/KeyRepository" filenamePattern="Recipient1PublicKey.asc">
+        <translation xmi:type="utility:ConstantString" string="Read PGP PublicKey"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="202,266" computeExpression="esql://routine/#PGPEncrypterMF_OverridePGPNodeProperties.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Override PGP Encrypter node properties"/>
+      </nodes>
+      <nodes xmi:type="com_ibm_broker_supportpac_pgp_PGPEncrypter.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="499,267" pgpConfigService="PGP-SDR-CFG-SERVICE" encryptionKeyUserId="&lt;&lt;Put any dummy key>>" signatureRequired="Yes" hashAlgorithm="SHA512" cipherAlgorithm="AES_256" compressionAlgorithm="ZLIB">
+        <translation xmi:type="utility:ConstantString" string="PGP Encrypter"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="279,98">
+        <translation xmi:type="utility:ConstantString" string="Flow Order"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="511,32" computeExpression="esql://routine/#PGPEncrypterMF_SavePGPPublicKey.Main">
+        <translation xmi:type="utility:ConstantString" string="Save PGP PublicKey"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="526,139" computeExpression="esql://routine/#PGPEncrypterMF_SavePGPSignKey.Main">
+        <translation xmi:type="utility:ConstantString" string="Save PGP SignKey"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="375,143" inputDirectory="C:/PGP/KeyRepository" filenamePattern="Sender1SecretKey.asc">
+        <translation xmi:type="utility:ConstantString" string="Read PGP SignKey"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.first" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.second" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

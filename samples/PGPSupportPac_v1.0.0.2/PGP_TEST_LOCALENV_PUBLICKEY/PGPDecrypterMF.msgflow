@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:com_ibm_broker_supportpac_pgp_PGPDecrypter.msgnode="com/ibm/broker/supportpac/pgp/PGPDecrypter.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="PGPDecrypterMF.msgflow" nsPrefix="PGPDecrypterMF.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="PGPDecrypterMF" bundleName="PGPDecrypterMF" pluginId="PGP_TEST_LOCALENV_PUBLICKEY"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/PGP_TEST_LOCALENV_PUBLICKEY/icons/full/obj16/PGPDecrypterMF.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/PGP_TEST_LOCALENV_PUBLICKEY/icons/full/obj30/PGPDecrypterMF.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="83,191" queueName="PGP.DECRYPT.IN" messageDomainProperty="BLOB" transactionMode="no">
+        <translation xmi:type="utility:ConstantString" string="PGP.DECRYPT.IN"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="644,192" queueName="PGP.DECRYPT.OUT">
+        <translation xmi:type="utility:ConstantString" string="PGP.DECRYPT.OUT"/>
+      </nodes>
+      <nodes xmi:type="com_ibm_broker_supportpac_pgp_PGPDecrypter.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="524,192" inputFileAction="ArchiveWithTimestamp" pgpConfigService="PGP-RCVR-CFG-SERVICE">
+        <translation xmi:type="utility:ConstantString" string="PGP Decrypter"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="219,191" computeExpression="esql://routine/#PGPDecrypterMF_OverridePGPDecrypterNodeProperties.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Override PGP Decrypter node properties"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>
