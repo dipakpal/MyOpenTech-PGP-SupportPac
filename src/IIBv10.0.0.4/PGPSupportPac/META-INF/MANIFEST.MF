@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-Vendor: IBM
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-Name: PGPSupportPac Plug-in
-Bundle-SymbolicName: PGPSupportPac; singleton:=true
-Require-Bundle: com.ibm.etools.mft.api,com.ibm.etools.mft.config
-Bundle-Version: 1.0.0.1
-Bundle-ManifestVersion: 2
-
