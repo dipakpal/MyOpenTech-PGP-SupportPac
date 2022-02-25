@@ -10,7 +10,6 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.ibm.broker.config.proxy.BrokerProxy;
 import com.ibm.broker.plugin.*;
 import com.ibm.broker.supportpac.pgp.PGPEncrypter;
 import com.ibm.broker.supportpac.pgp.PGPEnvironment;
@@ -37,7 +36,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	private String replaceDuplicateArchive = "Yes";
 	
 	// Encryption Properties
-	private String pgpConfigService = "";
+	private String pgpPolicy = "";
 	private String asciiArmor = "Yes";
 	private String integrityCheck = "Yes";
 	private String encryptionKeyUserId = "";
@@ -64,7 +63,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 
 	/**
 	 * Public Constructor
-	 * @throws MbException
+	 * @throws MbException exception
 	 */
 	public PGPEncrypterNode() throws MbException {
 		// create terminals here
@@ -79,7 +78,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Return Node name
-	 * @return
+	 * @return node name
 	 */
 	public static String getNodeName() {
 		return "PGPEncrypterNode";
@@ -88,7 +87,6 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	/**
 	 * Evalute method to process messages
 	 */
-	@SuppressWarnings("static-access")
 	public void evaluate(MbMessageAssembly inAssembly, MbInputTerminal inTerm) throws MbException {
 		
 		// Get input message and input local environment
@@ -97,7 +95,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 
 		// create new message
 		MbMessage outMessage = new MbMessage(inMessage);
-		MbMessageAssembly outAssembly = null;
+		MbMessageAssembly outAssembly;
 		
 		// Declare variables		
 		boolean isInputStreamOpened = true;
@@ -132,10 +130,10 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 					int waitInterval = 180;
 					int waitCounter = 0;
 
-					MbPolicy mbPol = getPolicy("UserDefined", getPgpConfigService());
+					MbPolicy mbPol = getPolicy("UserDefined", getPgpPolicy());
 					
 					if(mbPol == null){
-						throw new RuntimeException("PGP Configurable Service not found: " + getPgpConfigService()+ ". Please verify the UserDefined Configurable service.");
+						throw new RuntimeException("PGP Policy not found: " + getPgpPolicy()+ ". Please verify the UserDefined Configurable service.");
 					}
 					
 					// Get Key Repository details
@@ -157,7 +155,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 					}
 					
 					// Initialize PGP Environment
-					PGPEnvironment.initialize(getPgpConfigService(), pgpPrivateKeyRepository, pgpPublicKeyRepository, false);
+					PGPEnvironment.initialize(getPgpPolicy(), pgpPrivateKeyRepository, pgpPublicKeyRepository, false);
 					
 					// Mark initialize
 					initialized = true;
@@ -172,11 +170,8 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 				String pgpSignaturePassPhrase = getSignKeyPassphrase();				
 				vOutputFileName 	= getOutputFileName();
 				
-				boolean signatureRequired = false;
-				if("Yes".equals(getSignatureRequired())){
-					signatureRequired = true;
-				}
-				
+				boolean signatureRequired = "Yes".equals(getSignatureRequired());
+
 				// Overwrite pgpSignaturePassPhrase/pgpSignatureKeyId by defaultSignaturePassPhrase/defaultSignKeyUserId
 				if("Yes".equals(useDefaultSignKey)){
 					pgpSignaturePassPhrase = this.defaultSignKeyPassphrase;
@@ -258,9 +253,9 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 						}
 						
 						if(envSignatureRequired != null && envSignatureRequired.trim().length() > 0){
-							if("YES".equals(envSignatureRequired.trim().toUpperCase())){
+							if("YES".equalsIgnoreCase(envSignatureRequired.trim())){
 								signatureRequired = true;
-							} else if("NO".equals(envSignatureRequired.trim().toUpperCase())){
+							} else if("NO".equalsIgnoreCase(envSignatureRequired.trim())){
 								signatureRequired = false;
 							} else {
 								throw new IllegalArgumentException("Invalid value of SignatureRequired: " + envSignatureRequired);
@@ -394,7 +389,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 								pgpSignaturePassPhrase, 
 								encryptionKey, 
 								pgpSignatureKeyId,
-								getPgpConfigService(),
+								getPgpPolicy(),
 								getBooleanValue(asciiArmor), 
 								getBooleanValue(integrityCheck),
 								cipherAlgorithm,
@@ -407,7 +402,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 								pgpSignaturePassPhrase, 
 								pgpEncryptionKeyId, 
 								signKey,
-								getPgpConfigService(),
+								getPgpPolicy(),
 								getBooleanValue(asciiArmor), 
 								getBooleanValue(integrityCheck),
 								cipherAlgorithm,
@@ -419,7 +414,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 								pgpSignaturePassPhrase, 
 								pgpEncryptionKeyId, 
 								pgpSignatureKeyId,
-								getPgpConfigService(),
+								getPgpPolicy(),
 								getBooleanValue(asciiArmor), 
 								getBooleanValue(integrityCheck),
 								cipherAlgorithm,
@@ -442,7 +437,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 						PGPEncrypter.encrypt(inStream, 
 								outStream,
 								pgpEncryptionKeyId, 
-								getPgpConfigService(), 
+								getPgpPolicy(),
 								getBooleanValue(asciiArmor), 
 								getBooleanValue(integrityCheck),
 								cipherAlgorithm,
@@ -718,12 +713,12 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 		this.encryptionKeyUserId = encryptionKeyUserId;
 	}
 
-	public String getPgpConfigService() {
-		return pgpConfigService;
+	public String getPgpPolicy() {
+		return pgpPolicy;
 	}
 
-	public void setPgpConfigService(String pgpConfigService) {
-		this.pgpConfigService = pgpConfigService;
+	public void setPgpPolicy(String pgpPolicy) {
+		this.pgpPolicy = pgpPolicy;
 	}	
 
 	public String getIntegrityCheck() {
@@ -768,9 +763,9 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 
 	/**
 	 * Get string value
-	 * @param element
-	 * @return String
-	 * @throws MbException
+	 * @param element element
+	 * @return String value
+	 * @throws MbException exception
 	 */
 	private String getValue(MbElement element) throws MbException {
 		String value = null;
@@ -785,9 +780,9 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get Passphrase Value
-	 * @param element
-	 * @return
-	 * @throws MbException
+	 * @param element element
+	 * @return value
+	 * @throws MbException exception
 	 */
 	private String getPassphraseValue(MbElement element) throws MbException {
 		String value = null;
@@ -799,9 +794,9 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get Value as Integer
-	 * @param element
-	 * @return
-	 * @throws MbException
+	 * @param element element
+	 * @return value
+	 * @throws MbException exception
 	 */
 	private int getValueAsInteger(MbElement element) throws MbException {
 		String value = getValueAsString(element);
@@ -813,9 +808,9 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get Value as String
-	 * @param element
-	 * @return
-	 * @throws MbException
+	 * @param element element
+	 * @return value
+	 * @throws MbException exception
 	 */
 	private String getValueAsString(MbElement element) throws MbException {
 		String value = null;
@@ -833,14 +828,11 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get boolean value
-	 * @param value
-	 * @return
+	 * @param value value
+	 * @return bool value
 	 */
 	private boolean getBooleanValue(String value){
-		if("Yes".equals(value)){
-			return true;
-		}
-		return false;
+		return "Yes".equals(value);
 	}
 
 }

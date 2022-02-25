@@ -1,18 +1,13 @@
 package com.ibm.broker.supportpac.pgp.impl;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.ibm.broker.config.appdev.Node;
-import com.ibm.broker.config.proxy.BrokerProxy;
-
 import com.ibm.broker.plugin.*;
 import com.ibm.broker.supportpac.pgp.PGPDecrypter;
 import com.ibm.broker.supportpac.pgp.PGPDecryptionResult;
 import com.ibm.broker.supportpac.pgp.PGPEnvironment;
-import com.ibm.integration.admin.http.HttpClient;
-import com.ibm.integration.admin.http.HttpResponse;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -47,10 +42,10 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	private static final Object lock = new Object();
 	private static int count = 1;
 	private String instancename = "PGPDecrypterNode-";
-	
+
 	/**
 	 * Public Constructor
-	 * @throws MbException
+	 * @throws MbException MbException
 	 */
 	public PGPDecrypterNode() throws MbException {
 		// create terminals here
@@ -65,7 +60,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Return Node name
-	 * @return
+	 * @return node name
 	 */
 	public static String getNodeName() {
 		return "PGPDecrypterNode";
@@ -74,7 +69,6 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	/**
 	 * Evalute method to process messages
 	 */
-	@SuppressWarnings("static-access")
 	public void evaluate(MbMessageAssembly inAssembly, MbInputTerminal inTerm) throws MbException {
 
 		// Get input message and input local environment
@@ -83,7 +77,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 
 		// create new message
 		MbMessage outMessage = new MbMessage(inMessage);
-		MbMessageAssembly outAssembly = null;
+		MbMessageAssembly outAssembly;
 		
 		// Declare variables		
 		boolean isInputStreamOpened = true;
@@ -106,12 +100,6 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 			try {				
 				// Initialize PGP Environment during first time execution
 				if(!initialized){
-					// To ensure that the BrokerProxy object has been populated with data
-					// from the broker before we access the configurable service,
-					// wait for 180 seconds
-					int waitInterval = 180;
-					int waitCounter = 0;
-
 					MbPolicy mbPol = getPolicy("UserDefined", getPgpConfigService());
 
 					if(mbPol == null){
@@ -122,7 +110,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 					String pgpPrivateKeyRepository = mbPol.getPropertyValueAsString("PrivateKeyRepository");
 					String pgpPublicKeyRepository = mbPol.getPropertyValueAsString("PublicKeyRepository");
 					
-					// Set default values of defaultDecryptionKeyPassphrase from Configurable Service if configured
+					// Set default values of defaultDecryptionKeyPassphrase from Policy if configured
 					String pgpDefaultDecryptionKeyPassphrase = mbPol.getPropertyValueAsString("DefaultDecryptionKeyPassphrase");
 					
 					// Do not trim()
@@ -137,18 +125,15 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 					initialized = true;
 				}
 				
-				// Set following variables from Node properties/Configurable Service
+				// Set following variables from Node properties/Policy
 				String vInputDirectory 	= getInputDirectory();
 				String vOutputDirectory = getOutputDirectory();
 				String vInputFileName 	= getInputFileName();
 				String pgpDecryptionPassPhrase = getDecryptionKeyPassphrase();			
 				vOutputFileName 	= getOutputFileName();
 				
-				boolean signatureValidationRequired = false;
-				if("Yes".equals(getValidateSignature())){
-					signatureValidationRequired = true;
-				}				
-				
+				boolean signatureValidationRequired = "Yes".equals(getValidateSignature());
+
 				// Overwrite default decryption key passphrase
 				if("Yes".equals(useDefaultDecryptionKeyPassphrase)){
 					pgpDecryptionPassPhrase = this.defaultDecryptionKeyPassphrase;
@@ -196,9 +181,9 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 						}
 						
 						if(envValidateSignature != null && envValidateSignature.trim().length() > 0){
-							if("YES".equals(envValidateSignature.trim().toUpperCase())){
+							if(envValidateSignature.trim().equalsIgnoreCase("YES")){
 								signatureValidationRequired = true;
-							} else if("NO".equals(envValidateSignature.trim().toUpperCase())){
+							} else if("NO".equalsIgnoreCase(envValidateSignature.trim())){
 								signatureValidationRequired = false;
 							} else {
 								throw new IllegalArgumentException("Invalid value of ValidateSignature: " + envValidateSignature);
@@ -317,7 +302,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 					isInputStreamOpened = false;
 					outStream.close();
 					isOutputStreamOpened = false;
-				} catch (Exception e) {}
+				} catch (Exception ignored) {}
 				
 				// Rename File to actual file name
 				if("FileSystem".equals(outputLocation)){
@@ -333,7 +318,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 							throw new RuntimeException("Output file can not be replaced. File may be in use: "+vOutputFileName);
 						}
 					}
-					
+
 					tempOutputFile.renameTo(new File(vOutputFileName));
 				}
 				
@@ -566,9 +551,9 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 
 	/**
 	 * Get string value
-	 * @param element
-	 * @return String
-	 * @throws MbException
+	 * @param element mbelement
+	 * @return String value
+	 * @throws MbException exception
 	 */
 	private String getValue(MbElement element) throws MbException {
 		String value = null;
@@ -583,9 +568,9 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get Value as Integer
-	 * @param element
-	 * @return
-	 * @throws MbException
+	 * @param element element
+	 * @return integer value
+	 * @throws MbException exception
 	 */
 	private int getValueAsInteger(MbElement element) throws MbException {
 		String value = getValueAsString(element);
@@ -597,9 +582,9 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get Passphrase Value
-	 * @param element
-	 * @return
-	 * @throws MbException
+	 * @param element mbelement
+	 * @return element value
+	 * @throws MbException exception
 	 */
 	private String getPassphraseValue(MbElement element) throws MbException {
 		String value = null;
@@ -611,9 +596,9 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	
 	/**
 	 * Get Value as String
-	 * @param element
-	 * @return
-	 * @throws MbException
+	 * @param element input element
+	 * @return trimmed value
+	 * @throws MbException exception
 	 */
 	private String getValueAsString(MbElement element) throws MbException {
 		String value = null;
