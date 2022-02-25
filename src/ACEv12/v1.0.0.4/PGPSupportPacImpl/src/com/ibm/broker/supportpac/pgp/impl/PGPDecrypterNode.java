@@ -30,7 +30,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 	private String replaceDuplicateArchive = "Yes";
 	
 	// Decryption Properties
-	private String pgpConfigService = "";
+	private String pgpPolicy = "";
 	private String validateSignature = "No";
 	private String decryptionKeyPassphrase = "";
 	private String useDefaultDecryptionKeyPassphrase = "Yes";
@@ -100,10 +100,10 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 			try {				
 				// Initialize PGP Environment during first time execution
 				if(!initialized){
-					MbPolicy mbPol = getPolicy("UserDefined", getPgpConfigService());
+					MbPolicy mbPol = getPolicy("UserDefined", getPgpPolicy());
 
 					if(mbPol == null){
-						throw new RuntimeException("PGP Policy not found: " + getPgpConfigService()+ ". Please verify the UserDefined Configurable service.");
+						throw new RuntimeException("PGP Policy not found: " + getPgpPolicy()+ ". Please verify the UserDefined Configurable service.");
 					}
 					
 					// Get Key Repository details
@@ -119,7 +119,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 					}
 					
 					// Initialize PGP Environment
-					PGPEnvironment.initialize(getPgpConfigService(), pgpPrivateKeyRepository, pgpPublicKeyRepository, false);
+					PGPEnvironment.initialize(getPgpPolicy(), pgpPrivateKeyRepository, pgpPublicKeyRepository, false);
 					
 					// Mark initialize
 					initialized = true;
@@ -282,7 +282,7 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 				}
 				
 				// Decrypt and validate Signature				
-				PGPDecryptionResult result = PGPDecrypter.decrypt(inStream, outStream, pgpDecryptionPassPhrase, getPgpConfigService());
+				PGPDecryptionResult result = PGPDecrypter.decrypt(inStream, outStream, pgpDecryptionPassPhrase, getPgpPolicy());
 
 			    // Throw Exception if Signature validation failed
 				if(result.isIsSigned() && !result.isIsSignatureValid() && signatureValidationRequired){
@@ -493,12 +493,12 @@ public class PGPDecrypterNode extends MbNode implements MbNodeInterface {
 		this.outputFileName = outputFileName;
 	}
 
-	public String getPgpConfigService() {
-		return pgpConfigService;
+	public String getPgpPolicy() {
+		return pgpPolicy;
 	}
 
-	public void setPgpConfigService(String pgpConfigService) {
-		this.pgpConfigService = pgpConfigService;
+	public void setPgpPolicy(String pgpPolicy) {
+		this.pgpPolicy = pgpPolicy;
 	}
 
 	public String getValidateSignature() {

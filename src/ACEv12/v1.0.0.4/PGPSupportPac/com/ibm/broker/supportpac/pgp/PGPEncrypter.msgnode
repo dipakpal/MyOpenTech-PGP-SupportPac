@@ -19,7 +19,7 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.replaceOutputFile" name="replaceOutputFile" eType="//@eClassifiers.3" defaultValueLiteral="Yes"/>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.inputFileAction" name="inputFileAction" eType="//@eClassifiers.4" defaultValueLiteral="NoAction"/>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.replaceDuplicateArchive" name="replaceDuplicateArchive" eType="//@eClassifiers.5" defaultValueLiteral="Yes"/>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.pgpConfigService" name="pgpConfigService" lowerBound="1">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.pgpPolicy" name="pgpPolicy" lowerBound="1">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.encryptionKeyUserId" name="encryptionKeyUserId" lowerBound="1">
@@ -68,8 +68,8 @@
                       <propertyName xmi:type="utility:TranslatableString" key="Property.inputFileAction" bundleName="com/ibm/broker/supportpac/pgp/PGPEncrypter" pluginId="PGPSupportPac"/>
                       <propertyDescriptor groupName="Group.Basic" describedAttribute="Property.replaceDuplicateArchive">
                         <propertyName xmi:type="utility:TranslatableString" key="Property.replaceDuplicateArchive" bundleName="com/ibm/broker/supportpac/pgp/PGPEncrypter" pluginId="PGPSupportPac"/>
-                        <propertyDescriptor groupName="Group.Encryption" configurable="true" describedAttribute="Property.pgpConfigService">
-                          <propertyName xmi:type="utility:TranslatableString" key="Property.pgpConfigService" bundleName="com/ibm/broker/supportpac/pgp/PGPEncrypter" pluginId="PGPSupportPac"/>
+                        <propertyDescriptor groupName="Group.Encryption" configurable="true" describedAttribute="Property.pgpPolicy">
+                          <propertyName xmi:type="utility:TranslatableString" key="Property.pgpPolicy" bundleName="com/ibm/broker/supportpac/pgp/PGPEncrypter" pluginId="PGPSupportPac"/>
                           <propertyDescriptor groupName="Group.Encryption" configurable="true" describedAttribute="Property.encryptionKeyUserId">
                             <propertyName xmi:type="utility:TranslatableString" key="Property.encryptionKeyUserId" bundleName="com/ibm/broker/supportpac/pgp/PGPEncrypter" pluginId="PGPSupportPac"/>
                             <propertyDescriptor groupName="Group.Encryption" describedAttribute="Property.asciiArmor">

@@ -76,7 +76,7 @@ public class PGPCommandLineDecrypter {
 			System.out.println("Decrypting........................................");
 
 		    PGPDecryptionResult result = PGPDecrypter.decrypt(inputStream, outputStream, pgpPassPhrase);
-		    
+
 		    try {
 				inputStream.close();
 				outputStream.close();
@@ -97,7 +97,7 @@ public class PGPCommandLineDecrypter {
 			}
 
 			if(result.isIsSigned() && result.isIsSignatureValid()){
-				System.out.println("Signature is validated successfully. Signature Key: " + result.getSignee());
+				System.out.println("Signature is validated successfully. Signature Key: " +result.getSignee());
 			}
 			
 			if(result.isIntegrityProtected()){
@@ -219,7 +219,6 @@ public class PGPCommandLineDecrypter {
 	/**
 	 * Validate
 	 * @param data
-	 * @param usage
 	 */
 	private static void validate(String data){
 		if(data == null){

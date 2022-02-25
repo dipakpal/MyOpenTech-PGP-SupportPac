@@ -5,12 +5,15 @@ import com.ibm.broker.config.appdev.Node;
 import com.ibm.broker.config.appdev.NodeProperty;
 import com.ibm.broker.config.appdev.OutputTerminal;
 
+import java.io.Serial;
+
 /*** 
  * <p>  <I>PGPDecrypterNodeUDN</I> instance</p>
  * <p></p>
  */
 public class PGPDecrypterNodeUDN extends Node {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	// Node constants
@@ -27,7 +30,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	protected final static String PROPERTY_REPLACEOUTPUTFILE = "replaceOutputFile";
 	protected final static String PROPERTY_INPUTFILEACTION = "inputFileAction";
 	protected final static String PROPERTY_REPLACEDUPLICATEARCHIVE = "replaceDuplicateArchive";
-	protected final static String PROPERTY_PGPCONFIGSERVICE = "pgpConfigService";
+	protected final static String PROPERTY_PGPPOLICY = "pgpPolicy";
 	protected final static String PROPERTY_VALIDATESIGNATURE = "validateSignature";
 	protected final static String PROPERTY_USEDEFAULTDECRYPTIONKEYPASSPHRASE = "useDefaultDecryptionKeyPassphrase";
 	protected final static String PROPERTY_DECRYPTIONKEYPASSPHRASE = "decryptionKeyPassphrase";
@@ -259,7 +262,7 @@ public class PGPDecrypterNodeUDN extends Node {
 			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_REPLACEOUTPUTFILE,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPDECRYPTER_REPLACEOUTPUTFILE.class,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_INPUTFILEACTION,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "NoAction", ENUM_PGPDECRYPTER_INPUTFILEACTION.class,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_REPLACEDUPLICATEARCHIVE,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPDECRYPTER_REPLACEDUPLICATEARCHIVE.class,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
-			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_PGPCONFIGSERVICE,		NodeProperty.Usage.MANDATORY,	true,	NodeProperty.Type.STRING, null,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
+			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_PGPPOLICY,		NodeProperty.Usage.MANDATORY,	true,	NodeProperty.Type.STRING, null,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_VALIDATESIGNATURE,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "No", ENUM_PGPDECRYPTER_VALIDATESIGNATURE.class,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_USEDEFAULTDECRYPTIONKEYPASSPHRASE,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPDECRYPTER_USEDEFAULTDECRYPTIONKEYPASSPHRASE.class,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPDecrypterNodeUDN.PROPERTY_DECRYPTIONKEYPASSPHRASE,		NodeProperty.Usage.OPTIONAL,	true,	NodeProperty.Type.STRING, null,"","",	"com/ibm/broker/supportpac/pgp/PGPDecrypter",	"PGPSupportPac")
@@ -314,8 +317,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_FILEENCRYPTION; the value of the property "<I>File Decryption</I>"
 	 */
 	public ENUM_PGPDECRYPTER_FILEENCRYPTION getFileEncryption() {
-		ENUM_PGPDECRYPTER_FILEENCRYPTION value = ENUM_PGPDECRYPTER_FILEENCRYPTION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_FILEENCRYPTION));
-		return value;
+		return ENUM_PGPDECRYPTER_FILEENCRYPTION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_FILEENCRYPTION));
 	}
 
 	/**
@@ -334,8 +336,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_OUTPUTLOCATION; the value of the property "<I>Output Location</I>"
 	 */
 	public ENUM_PGPDECRYPTER_OUTPUTLOCATION getOutputLocation() {
-		ENUM_PGPDECRYPTER_OUTPUTLOCATION value = ENUM_PGPDECRYPTER_OUTPUTLOCATION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_OUTPUTLOCATION));
-		return value;
+		return ENUM_PGPDECRYPTER_OUTPUTLOCATION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_OUTPUTLOCATION));
 	}
 
 	/**
@@ -430,8 +431,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_REPLACEOUTPUTFILE; the value of the property "<I>Replace OutputFile</I>"
 	 */
 	public ENUM_PGPDECRYPTER_REPLACEOUTPUTFILE getReplaceOutputFile() {
-		ENUM_PGPDECRYPTER_REPLACEOUTPUTFILE value = ENUM_PGPDECRYPTER_REPLACEOUTPUTFILE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_REPLACEOUTPUTFILE));
-		return value;
+		return ENUM_PGPDECRYPTER_REPLACEOUTPUTFILE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_REPLACEOUTPUTFILE));
 	}
 
 	/**
@@ -450,8 +450,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_INPUTFILEACTION; the value of the property "<I>InputFile Action</I>"
 	 */
 	public ENUM_PGPDECRYPTER_INPUTFILEACTION getInputFileAction() {
-		ENUM_PGPDECRYPTER_INPUTFILEACTION value = ENUM_PGPDECRYPTER_INPUTFILEACTION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_INPUTFILEACTION));
-		return value;
+		return ENUM_PGPDECRYPTER_INPUTFILEACTION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_INPUTFILEACTION));
 	}
 
 	/**
@@ -470,8 +469,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_REPLACEDUPLICATEARCHIVE; the value of the property "<I>Replace Duplicate Archive</I>"
 	 */
 	public ENUM_PGPDECRYPTER_REPLACEDUPLICATEARCHIVE getReplaceDuplicateArchive() {
-		ENUM_PGPDECRYPTER_REPLACEDUPLICATEARCHIVE value = ENUM_PGPDECRYPTER_REPLACEDUPLICATEARCHIVE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_REPLACEDUPLICATEARCHIVE));
-		return value;
+		return ENUM_PGPDECRYPTER_REPLACEDUPLICATEARCHIVE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_REPLACEDUPLICATEARCHIVE));
 	}
 
 	/**
@@ -479,8 +477,8 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * 
 	 * @param value String ; the value to set the property "<I>PGP Configurable Service</I>"
 	 */
-	public PGPDecrypterNodeUDN setPgpConfigService(String value) {
-		setProperty(PGPDecrypterNodeUDN.PROPERTY_PGPCONFIGSERVICE, value);
+	public PGPDecrypterNodeUDN setPgpPolicy(String value) {
+		setProperty(PGPDecrypterNodeUDN.PROPERTY_PGPPOLICY, value);
 		return this;
 	}
 
@@ -489,8 +487,8 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * 
 	 * @return String; the value of the property "<I>PGP Configurable Service</I>"
 	 */
-	public String getPgpConfigService() {
-		return (String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_PGPCONFIGSERVICE);
+	public String getPgpPolicy() {
+		return (String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_PGPPOLICY);
 	}
 
 	/**
@@ -509,8 +507,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_VALIDATESIGNATURE; the value of the property "<I>Validate Signature</I>"
 	 */
 	public ENUM_PGPDECRYPTER_VALIDATESIGNATURE getValidateSignature() {
-		ENUM_PGPDECRYPTER_VALIDATESIGNATURE value = ENUM_PGPDECRYPTER_VALIDATESIGNATURE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_VALIDATESIGNATURE));
-		return value;
+		return ENUM_PGPDECRYPTER_VALIDATESIGNATURE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_VALIDATESIGNATURE));
 	}
 
 	/**
@@ -529,8 +526,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_USEDEFAULTDECRYPTIONKEYPASSPHRASE; the value of the property "<I>Use Default DecryptionKey Passphrase</I>"
 	 */
 	public ENUM_PGPDECRYPTER_USEDEFAULTDECRYPTIONKEYPASSPHRASE getUseDefaultDecryptionKeyPassphrase() {
-		ENUM_PGPDECRYPTER_USEDEFAULTDECRYPTIONKEYPASSPHRASE value = ENUM_PGPDECRYPTER_USEDEFAULTDECRYPTIONKEYPASSPHRASE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_USEDEFAULTDECRYPTIONKEYPASSPHRASE));
-		return value;
+		return ENUM_PGPDECRYPTER_USEDEFAULTDECRYPTIONKEYPASSPHRASE.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_USEDEFAULTDECRYPTIONKEYPASSPHRASE));
 	}
 
 	/**
@@ -557,5 +553,5 @@ public class PGPDecrypterNodeUDN extends Node {
 		if ((retVal==null) || retVal.equals(""))
 			retVal = "PGP Decrypter";
 		return retVal;
-	};
+	}
 }

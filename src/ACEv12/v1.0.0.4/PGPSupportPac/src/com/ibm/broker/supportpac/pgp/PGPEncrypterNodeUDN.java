@@ -27,7 +27,7 @@ public class PGPEncrypterNodeUDN extends Node {
 	protected final static String PROPERTY_REPLACEOUTPUTFILE = "replaceOutputFile";
 	protected final static String PROPERTY_INPUTFILEACTION = "inputFileAction";
 	protected final static String PROPERTY_REPLACEDUPLICATEARCHIVE = "replaceDuplicateArchive";
-	protected final static String PROPERTY_PGPCONFIGSERVICE = "pgpConfigService";
+	protected final static String PROPERTY_PGPPOLICY = "pgpPolicy";
 	protected final static String PROPERTY_ENCRYPTIONKEYUSERID = "encryptionKeyUserId";
 	protected final static String PROPERTY_ASCIIARMOR = "asciiArmor";
 	protected final static String PROPERTY_INTEGRITYCHECK = "integrityCheck";
@@ -461,7 +461,7 @@ public class PGPEncrypterNodeUDN extends Node {
 			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_REPLACEOUTPUTFILE,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPENCRYPTER_REPLACEOUTPUTFILE.class,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_INPUTFILEACTION,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "NoAction", ENUM_PGPENCRYPTER_INPUTFILEACTION.class,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_REPLACEDUPLICATEARCHIVE,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE.class,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
-			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_PGPCONFIGSERVICE,		NodeProperty.Usage.MANDATORY,	true,	NodeProperty.Type.STRING, null,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
+			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_PGPPOLICY,		NodeProperty.Usage.MANDATORY,	true,	NodeProperty.Type.STRING, null,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_ENCRYPTIONKEYUSERID,		NodeProperty.Usage.MANDATORY,	true,	NodeProperty.Type.STRING, null,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_ASCIIARMOR,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPENCRYPTER_ASCIIARMOR.class,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
 			new NodeProperty(PGPEncrypterNodeUDN.PROPERTY_INTEGRITYCHECK,		NodeProperty.Usage.OPTIONAL,	false,	NodeProperty.Type.ENUMERATION, "Yes", ENUM_PGPENCRYPTER_INTEGRITYCHECK.class,"","",	"com/ibm/broker/supportpac/pgp/PGPEncrypter",	"PGPSupportPac"),
@@ -689,7 +689,7 @@ public class PGPEncrypterNodeUDN extends Node {
 	 * @param value String ; the value to set the property "<I>PGP Configurable Service</I>"
 	 */
 	public PGPEncrypterNodeUDN setPgpConfigService(String value) {
-		setProperty(PGPEncrypterNodeUDN.PROPERTY_PGPCONFIGSERVICE, value);
+		setProperty(PGPEncrypterNodeUDN.PROPERTY_PGPPOLICY, value);
 		return this;
 	}
 
@@ -698,8 +698,8 @@ public class PGPEncrypterNodeUDN extends Node {
 	 * 
 	 * @return String; the value of the property "<I>PGP Configurable Service</I>"
 	 */
-	public String getPgpConfigService() {
-		return (String)getPropertyValue(PGPEncrypterNodeUDN.PROPERTY_PGPCONFIGSERVICE);
+	public String getPgpPolicy() {
+		return (String)getPropertyValue(PGPEncrypterNodeUDN.PROPERTY_PGPPOLICY);
 	}
 
 	/**
