@@ -3,23 +3,23 @@ PGP SupportPac for App Connect Enterprise
 
 About
 -----
-Since ACE doen't support configurable services anymore, the plugin has been reworked to reflect these changes.
+Since ACE doesn't support Configurable Services anymore, the plugin has been reworked to reflect these changes.
 The underlying code has been changed to get it functional again.
- - Connection with brokerproxy has been removed
+ - Connection with BrokerProxy has been removed
  - Policies are directly accessed via ```MbPolicy mbPol = getPolicy("UserDefined", getPgpPolicy());```
 
-All references to configurable services (comments, name, variables) have been replaced by policy or policies.
+All references to Configurable Services (comments, name, variables) have been replaced by Policy or Policies.
 
 Because of this rework, you will need to readd/reconfigure these nodes in your message flow(s) and redeploy the flow(s).   
 
 Attention points
 ----------------
-Since ACE requires all policies to be defined in a policy project, you need to either define a default policy project
-or you need to supply the policy project name along with the PGP policy name.
- - default policy project:
+Since ACE requires all Policies to be defined in a Policy project, you need to either define a default Policy project
+or you need to supply the Policy project name along with the PGP Policy name.
+ - default Policy project:
 
 ![](image/default_pp.png)
- - dedicated policy project:
+ - dedicated Policy project:
 
 ![](image/dedicated_pp.png)
 
