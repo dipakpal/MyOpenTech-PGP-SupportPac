@@ -520,7 +520,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 					}
 				}
 				
-				throw new MbUserException("com.ibm.broker.supportpac.pgp.impl.PGPEncrypterNode", "evaluate", "Message Encryption Failed!", msg, msg, null);
+				throw new MbUserException("com.ibm.broker.supportpac.pgp2.impl.PGPEncrypterNode", "evaluate", "Message Encryption Failed!", msg, msg, null);
 			}
 			
 			// Propagate to out terminal
@@ -580,7 +580,7 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 						inputFile.renameTo(new File(archiveFileName));
 					}
 				} catch (Exception e) {
-					throw new MbUserException("com.ibm.broker.supportpac.pgp.impl.PGPEncrypterNode", "evaluate", 
+					throw new MbUserException("com.ibm.broker.supportpac.pgp2.impl.PGPEncrypterNode", "evaluate",
 							"Input file can not be moved to archive directory", e.getMessage(), e.getMessage(), null);
 				}
 			}
