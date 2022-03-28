@@ -5,7 +5,6 @@ import com.ibm.broker.config.appdev.Node;
 import com.ibm.broker.config.appdev.NodeProperty;
 import com.ibm.broker.config.appdev.OutputTerminal;
 
-import java.io.Serial;
 
 import static com.ibm.broker.supportpac.pgp.PGPDecrypterNodeUDN.ENUM_PGPDECRYPTER_INPUTFILEACTION.*;
 
@@ -15,7 +14,6 @@ import static com.ibm.broker.supportpac.pgp.PGPDecrypterNodeUDN.ENUM_PGPDECRYPTE
  */
 public class PGPDecrypterNodeUDN extends Node {
 
-	@Serial
 	private static final long serialVersionUID = 1L;
 
 	// Node constants
