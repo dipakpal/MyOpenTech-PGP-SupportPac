@@ -5,6 +5,8 @@ import com.ibm.broker.config.appdev.Node;
 import com.ibm.broker.config.appdev.NodeProperty;
 import com.ibm.broker.config.appdev.OutputTerminal;
 
+import static com.ibm.broker.supportpac.pgp.PGPEncrypterNodeUDN.ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE.*;
+
 /*** 
  * <p>  <I>PGPEncrypterNodeUDN</I> instance</p>
  * <p></p>
@@ -127,8 +129,8 @@ public class PGPEncrypterNodeUDN extends Node {
 		}
 
 		protected static ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE getEnumFromString(String enumValue) {
-			ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE enumConst = ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE.Yes;
-			if (ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE.No.value.equals(enumValue)) enumConst = ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE.No;
+			ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE enumConst = Yes;
+			if (No.value.equals(enumValue)) enumConst = No;
 			return enumConst;
 		}
 
@@ -679,7 +681,7 @@ public class PGPEncrypterNodeUDN extends Node {
 	 * @return ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE; the value of the property "<I>Replace Duplicate Archive</I>"
 	 */
 	public ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE getReplaceDuplicateArchive() {
-		ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE value = ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE.getEnumFromString((String)getPropertyValue(PGPEncrypterNodeUDN.PROPERTY_REPLACEDUPLICATEARCHIVE));
+		ENUM_PGPENCRYPTER_REPLACEDUPLICATEARCHIVE value = getEnumFromString((String)getPropertyValue(PGPEncrypterNodeUDN.PROPERTY_REPLACEDUPLICATEARCHIVE));
 		return value;
 	}
 
