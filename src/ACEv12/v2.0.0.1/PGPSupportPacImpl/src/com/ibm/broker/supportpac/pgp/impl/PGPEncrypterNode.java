@@ -1,18 +1,12 @@
 package com.ibm.broker.supportpac.pgp.impl;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import com.ibm.broker.plugin.*;
 import com.ibm.broker.supportpac.pgp.PGPEncrypter;
 import com.ibm.broker.supportpac.pgp.PGPEnvironment;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -127,9 +121,6 @@ public class PGPEncrypterNode extends MbNode implements MbNodeInterface {
 					// To ensure that the BrokerProxy object has been populated with data
 					// from the broker before we access the configurable service,
 					// wait for 180 seconds
-					int waitInterval = 180;
-					int waitCounter = 0;
-
 					MbPolicy mbPol = getPolicy("UserDefined", getPgpPolicy());
 					
 					if(mbPol == null){
