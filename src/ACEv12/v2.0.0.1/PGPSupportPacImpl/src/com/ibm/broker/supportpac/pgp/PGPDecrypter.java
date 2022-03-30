@@ -125,7 +125,6 @@ public class PGPDecrypter {
     /**
      * Decrypt/Validate Signature
      * @param in - Input Stream
-     * @param passPhrase - PGP Secret key passphrase
      * @param out - Output stream
      * @return PGPDecryptionResult
      * @throws Exception

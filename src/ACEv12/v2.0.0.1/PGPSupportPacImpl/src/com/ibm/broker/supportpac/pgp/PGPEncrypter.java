@@ -13,6 +13,7 @@ import java.util.Iterator;
 import org.bouncycastle.bcpg.ArmoredOutputStream;
 import org.bouncycastle.openpgp.PGPCompressedDataGenerator;
 import org.bouncycastle.openpgp.PGPEncryptedDataGenerator;
+import org.bouncycastle.openpgp.PGPException;
 import org.bouncycastle.openpgp.PGPLiteralData;
 import org.bouncycastle.openpgp.PGPLiteralDataGenerator;
 import org.bouncycastle.openpgp.PGPPrivateKey;
@@ -203,8 +204,6 @@ public class PGPEncrypter {
      * @param in
      * @param out
      * @param pgpEncryptionKey
-     * @param pgpSigningKey
-     * @param pgpPassPhraseSignature
      * @throws Exception
      */
     public static void encrypt(InputStream in, OutputStream out, String pgpEncryptionKey, String pgpKeyRepositoryName) throws PGPException {
@@ -836,7 +835,6 @@ public class PGPEncrypter {
      * @param pgpPassPhraseSignature
      * @param pgpEncryptionKey
      * @param pgpSigningKey
-     * @param pgpKeyRepositoryName
      * @param AsciiArmor
      * @param withIntegrityCheck
      * @param symmetricKeyAlgorithm

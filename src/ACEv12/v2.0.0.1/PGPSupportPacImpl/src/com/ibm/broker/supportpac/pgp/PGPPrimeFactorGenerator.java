@@ -28,7 +28,6 @@ public class PGPPrimeFactorGenerator {
 
 	/**
 	 * Public Constructor
-	 * @param kSz
 	 */
 	public PGPPrimeFactorGenerator(int keySize) { 
 		
@@ -88,7 +87,6 @@ public class PGPPrimeFactorGenerator {
 		 * Constructor
 		 * @param bits
 		 * @param crtty
-		 * @param sr
 		 */
 		PrimeGenerator(int bits, int crtty, SecureRandom secureRnd) {
 			if (bits < 512){

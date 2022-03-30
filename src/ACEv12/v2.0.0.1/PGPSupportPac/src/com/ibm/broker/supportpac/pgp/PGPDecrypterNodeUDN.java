@@ -5,7 +5,8 @@ import com.ibm.broker.config.appdev.Node;
 import com.ibm.broker.config.appdev.NodeProperty;
 import com.ibm.broker.config.appdev.OutputTerminal;
 
-import java.io.Serial;
+
+import static com.ibm.broker.supportpac.pgp.PGPDecrypterNodeUDN.ENUM_PGPDECRYPTER_INPUTFILEACTION.*;
 
 /*** 
  * <p>  <I>PGPDecrypterNodeUDN</I> instance</p>
@@ -13,7 +14,6 @@ import java.io.Serial;
  */
 public class PGPDecrypterNodeUDN extends Node {
 
-	@Serial
 	private static final long serialVersionUID = 1L;
 
 	// Node constants
@@ -61,10 +61,10 @@ public class PGPDecrypterNodeUDN extends Node {
 		}
 
 		protected static ENUM_PGPDECRYPTER_INPUTFILEACTION getEnumFromString(String enumValue) {
-			ENUM_PGPDECRYPTER_INPUTFILEACTION enumConst = ENUM_PGPDECRYPTER_INPUTFILEACTION.NoAction;
-			if (ENUM_PGPDECRYPTER_INPUTFILEACTION.Delete.value.equals(enumValue)) enumConst = ENUM_PGPDECRYPTER_INPUTFILEACTION.Delete;
-			if (ENUM_PGPDECRYPTER_INPUTFILEACTION.Archive.value.equals(enumValue)) enumConst = ENUM_PGPDECRYPTER_INPUTFILEACTION.Archive;
-			if (ENUM_PGPDECRYPTER_INPUTFILEACTION.ArchiveWithTimestamp.value.equals(enumValue)) enumConst = ENUM_PGPDECRYPTER_INPUTFILEACTION.ArchiveWithTimestamp;
+			ENUM_PGPDECRYPTER_INPUTFILEACTION enumConst = NoAction;
+			if (Delete.value.equals(enumValue)) enumConst = Delete;
+			if (Archive.value.equals(enumValue)) enumConst = Archive;
+			if (ArchiveWithTimestamp.value.equals(enumValue)) enumConst = ArchiveWithTimestamp;
 			return enumConst;
 		}
 
@@ -450,7 +450,7 @@ public class PGPDecrypterNodeUDN extends Node {
 	 * @return ENUM_PGPDECRYPTER_INPUTFILEACTION; the value of the property "<I>InputFile Action</I>"
 	 */
 	public ENUM_PGPDECRYPTER_INPUTFILEACTION getInputFileAction() {
-		return ENUM_PGPDECRYPTER_INPUTFILEACTION.getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_INPUTFILEACTION));
+		return getEnumFromString((String)getPropertyValue(PGPDecrypterNodeUDN.PROPERTY_INPUTFILEACTION));
 	}
 
 	/**

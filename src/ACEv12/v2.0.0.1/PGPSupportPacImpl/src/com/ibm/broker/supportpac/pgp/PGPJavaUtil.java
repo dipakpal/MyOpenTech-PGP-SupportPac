@@ -116,7 +116,6 @@ public class PGPJavaUtil {
 	
 	/**
 	 * Read Public Key
-	 * @param fileName
 	 * @return
 	 * @throws IOException
 	 * @throws PGPException
@@ -158,7 +157,6 @@ public class PGPJavaUtil {
 
 	/**
 	 * Read Secret Key
-	 * @param fileName
 	 * @return
 	 * @throws IOException
 	 * @throws PGPException

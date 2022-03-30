@@ -446,7 +446,6 @@ public class PGPKeyUtil {
 	/**
 	 * Validate
 	 * @param data
-	 * @param usage
 	 */
 	private static void validate(String data){
 		if(data == null || (data != null && data.trim().length() ==  0)){
