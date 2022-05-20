@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MyOpenTech-PGP-SupportPac.iml" filepath="$PROJECT_DIR$/.idea/MyOpenTech-PGP-SupportPac.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyOpenTech-PGP-SupportPac.iml" filepath="$PROJECT_DIR$/MyOpenTech-PGP-SupportPac.iml" />
     </modules>
   </component>
 </project>
