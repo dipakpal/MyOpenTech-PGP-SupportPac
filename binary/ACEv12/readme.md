@@ -27,10 +27,10 @@ or you need to supply the Policy project name along with the PGP Policy name.
 Installation
 ------------
 **Runtime:**
-If you have a configured the node to use a dedicated lilPath, copy the com.ibm.broker.supportpac.PGP.jar from .\lib to 
-that directory and copy the other files to the shared-classes directory.
-Else copy com.ibm.broker.supportpac.PGP.jar from .\lib to %MQSI_BASE_FILEPATH%\server\jplugin for windows or to 
-$MQSI_BASE_FILEPATH/server/jplugin for linux (the bc*.jar files still need to end up in the shared-classes).
+If you have configured the node to use a dedicated lilPath, copy the com.ibm.broker.supportpac.PGP.jar from .\lib to 
+that directory, else copy com.ibm.broker.supportpac.PGP.jar from .\lib to %MQSI_BASE_FILEPATH%\server\jplugin for 
+windows or to $MQSI_BASE_FILEPATH/server/jplugin for linux.
+The supporting classes (bc*.jar) need to be copied to the %MQSI_REGISTRY%\shared-classes folder.
 
 **Toolkit:**
 Copy the contents from ./plugins to %MQSI_BASE_FILEPATH%\tools\plugins for windows or to
