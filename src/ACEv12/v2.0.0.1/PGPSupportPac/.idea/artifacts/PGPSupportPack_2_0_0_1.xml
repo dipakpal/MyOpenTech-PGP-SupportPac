@@ -1,0 +1,27 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PGPSupportPack_2.0.0.1">
+    <output-path>$PROJECT_DIR$/../../../../binary/ACEv12/plugins/</output-path>
+    <root id="archive" name="PGPSupportPac.jar">
+      <element id="module-output" name="PGPSupportPac" />
+      <element id="directory" name="com">
+        <element id="dir-copy" path="$PROJECT_DIR$/com" />
+      </element>
+      <element id="directory" name="icons">
+        <element id="dir-copy" path="$PROJECT_DIR$/icons" />
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/build.properties" />
+      <element id="file-copy" path="$PROJECT_DIR$/HelpContexts.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/palette.properties" />
+      <element id="file-copy" path="$PROJECT_DIR$/palette.xmi" />
+      <element id="file-copy" path="$PROJECT_DIR$/PDHelp.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/.udnmetadata" />
+      <element id="directory" name="generated">
+        <element id="dir-copy" path="$PROJECT_DIR$/generated" />
+      </element>
+    </root>
+  </artifact>
+</component>
