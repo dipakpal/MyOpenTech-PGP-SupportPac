@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="UserDefined" policyName="PGP-RCVR-CFG-SERVICE" policyTemplate="">
+    <DefaultDecryptionKeyPassphrase>sdrpassphrase</DefaultDecryptionKeyPassphrase>
+    <DefaultSignKeyPassphrase>sdrpassphrase</DefaultSignKeyPassphrase>
+    <DefaultSignKeyUserId>Sender &lt;sender-pgp-keys@ibm.com&gt;</DefaultSignKeyUserId>
+    <PrivateKeyRepository>C:/PGP/KeyRepository/SenderSecretKey.asc</PrivateKeyRepository>
+    <PublicKeyRepository>C:/PGP/KeyRepository/SenderPublicKey.asc</PublicKeyRepository>
+  </policy>
+</policies>

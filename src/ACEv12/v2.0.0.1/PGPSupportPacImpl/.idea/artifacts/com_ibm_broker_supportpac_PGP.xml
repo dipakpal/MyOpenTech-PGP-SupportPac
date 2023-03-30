@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="com.ibm.broker.supportpac.PGP">
+    <output-path>$PROJECT_DIR$/../../../../binary/ACEv12/lib</output-path>
+    <root id="archive" name="com.ibm.broker.supportpac.PGP.jar">
+      <element id="module-output" name="PGPSupportPacImpl" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

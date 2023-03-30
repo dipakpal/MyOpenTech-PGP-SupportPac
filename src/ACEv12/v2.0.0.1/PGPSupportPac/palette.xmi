@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<palette:CategoryCmp xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:palette="http://www.ibm.com/wbi/2005/eflow_palette" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" xmi:id="PGP">
+  <categoryLabel xsi:type="utility:TranslatableString" key="category.name" bundleName="palette" pluginId="PGPSupportPac"/>
+  <cmpGroups xsi:type="palette:GroupCmp">
+    <cmpEntries xsi:type="palette:ToolEntry" xmi:id="com.ibm.broker.supportpac.pgp.PGPEncrypter" icon16Name="platform:/plugin/PGPSupportPac/icons/full/clcl16/com/ibm/broker/supportpac/pgp/PGPEncrypter.gif" icon32Name="platform:/plugin/PGPSupportPac/icons/full/obj30/com/ibm/broker/supportpac/pgp/PGPEncrypter.gif" toolClassName="com.ibm.etools.mft.flow.editor.MFTNodeCreationTool" toolClassPluginId="com.ibm.etools.mft.flow" nodeURI="com/ibm/broker/supportpac/pgp/PGPEncrypter.msgnode">
+      <entryLabel xsi:type="utility:TranslatableString" key="entry.com.ibm.broker.supportpac.pgp.PGPEncrypter" bundleName="palette" pluginId="PGPSupportPac"/>
+      <entryShortDescription xsi:type="utility:TranslatableString" key="tooltip.com.ibm.broker.supportpac.pgp.PGPEncrypter" bundleName="palette" pluginId="PGPSupportPac"/>
+    </cmpEntries>
+    <cmpEntries xsi:type="palette:ToolEntry" xmi:id="com.ibm.broker.supportpac.pgp.PGPDecrypter" icon16Name="platform:/plugin/PGPSupportPac/icons/full/clcl16/com/ibm/broker/supportpac/pgp/PGPDecrypter.gif" icon32Name="platform:/plugin/PGPSupportPac/icons/full/obj30/com/ibm/broker/supportpac/pgp/PGPDecrypter.gif" toolClassName="com.ibm.etools.mft.flow.editor.MFTNodeCreationTool" toolClassPluginId="com.ibm.etools.mft.flow" nodeURI="com/ibm/broker/supportpac/pgp/PGPDecrypter.msgnode">
+      <entryLabel xsi:type="utility:TranslatableString" key="entry.com.ibm.broker.supportpac.pgp.PGPDecrypter" bundleName="palette" pluginId="PGPSupportPac"/>
+      <entryShortDescription xsi:type="utility:TranslatableString" key="tooltip.com.ibm.broker.supportpac.pgp.PGPDecrypter" bundleName="palette" pluginId="PGPSupportPac"/>
+    </cmpEntries>
+  </cmpGroups>
+</palette:CategoryCmp>
